@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  drink_server:
+    ports:
+      - "8080:80"
+    build:
+      dockerfile: config/docker/Dockerfile
+    volumes:
+       - ./:/code
+    container_name: drink_server
