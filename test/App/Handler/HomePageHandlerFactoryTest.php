@@ -14,11 +14,9 @@ use Psr\Container\ContainerInterface;
 
 class HomePageHandlerFactoryTest extends TestCase
 {
-    /** @var ContainerInterface&MockObject */
-    protected $container;
+    protected ContainerInterface & MockObject $container;
 
-    /** @var RouterInterface&MockObject */
-    protected $router;
+    protected RouterInterface & MockObject $router;
 
     protected function setUp(): void
     {
@@ -29,7 +27,7 @@ class HomePageHandlerFactoryTest extends TestCase
     public function testFactoryWithoutTemplate(): void
     {
         $this->container
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('has')
             ->with(TemplateRendererInterface::class)
             ->willReturn(false);
@@ -44,12 +42,12 @@ class HomePageHandlerFactoryTest extends TestCase
     {
         $renderer = $this->createMock(TemplateRendererInterface::class);
         $this->container
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('has')
             ->with(TemplateRendererInterface::class)
             ->willReturn(true);
         $this->container
-            ->expects($this->exactly(1))
+            ->expects(self::exactly(1))
             ->method('get')
             ->with(TemplateRendererInterface::class)
             ->willReturn($renderer);

@@ -8,7 +8,6 @@ use App\Services\PreferenceService;
 
 use function assert;
 
-use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 

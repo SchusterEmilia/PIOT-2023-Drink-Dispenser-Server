@@ -26,7 +26,7 @@ class ConfigProvider
      *
      * To add a bit of a structure, each section is defined in a separate
      * method which returns an array with its configuration.
-     * @return array<string, array<string, array<class-string, class-string>>>
+     * @return array<string, array<string, array<string, class-string|list<string>>>>
      */
     public function __invoke(): array
     {

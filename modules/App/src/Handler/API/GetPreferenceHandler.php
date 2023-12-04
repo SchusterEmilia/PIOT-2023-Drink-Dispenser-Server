@@ -6,7 +6,6 @@ namespace App\Handler\API;
 
 use App\Services\PreferenceService;
 use Laminas\Diactoros\Response\JsonResponse;
-use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
