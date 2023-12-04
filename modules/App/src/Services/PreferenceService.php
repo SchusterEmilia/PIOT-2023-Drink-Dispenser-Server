@@ -16,7 +16,7 @@ class PreferenceService
         return $preference;
     }
 
-    public function setPreference(string $uid, ...$notYetUsed): bool
+    public function setPreference(string $uid, mixed ...$notYetUsed): bool
     {
         //TODO decide on arguments structure and save to db
         return true;

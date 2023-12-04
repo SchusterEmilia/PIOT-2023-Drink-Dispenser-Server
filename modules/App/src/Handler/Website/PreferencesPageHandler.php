@@ -21,6 +21,7 @@ class PreferencesPageHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return new HtmlResponse($this->template->render('app::dashboard'));
+        $preference = $this->preferenceService->getPreference("");
+        return new HtmlResponse($this->template->render('app::dashboard', ['preference'=>$preference]));
     }
 }
