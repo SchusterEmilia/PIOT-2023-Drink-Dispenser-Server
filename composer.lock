@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e404f600e7dd0c495d2867a15b19bbb0",
+    "content-hash": "843e6da3b0584536f7dfbfc1242fa5da",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -5047,6 +5047,130 @@
             "time": "2020-09-28T06:39:44+00:00"
         },
         {
+            "name": "shipmonk/phpstan-rules",
+            "version": "2.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shipmonk-rnd/phpstan-rules.git",
+                "reference": "101c85d4421d3f7ba78ad641376bb4fa80f1ddda"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shipmonk-rnd/phpstan-rules/zipball/101c85d4421d3f7ba78ad641376bb4fa80f1ddda",
+                "reference": "101c85d4421d3f7ba78ad641376bb4fa80f1ddda",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^4.14.0",
+                "php": "^7.4 || ^8.0",
+                "phpstan/phpstan": "^1.10.30"
+            },
+            "require-dev": {
+                "editorconfig-checker/editorconfig-checker": "^10.3.0",
+                "ergebnis/composer-normalize": "^2.28",
+                "nette/neon": "^3.3.1",
+                "phpstan/phpstan-phpunit": "^1.1.1",
+                "phpstan/phpstan-strict-rules": "^1.2.3",
+                "phpunit/phpunit": "^9.5.20",
+                "shipmonk/name-collision-detector": "^2.0.0",
+                "slevomat/coding-standard": "^8.0.1"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "rules.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ShipMonk\\PHPStan\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Various extra strict PHPStan rules we found useful in ShipMonk.",
+            "keywords": [
+                "PHPStan",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/shipmonk-rnd/phpstan-rules/issues",
+                "source": "https://github.com/shipmonk-rnd/phpstan-rules/tree/2.10.0"
+            },
+            "time": "2023-11-29T11:54:45+00:00"
+        },
+        {
+            "name": "slam/phpstan-extensions",
+            "version": "v6.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Slamdunk/phpstan-extensions.git",
+                "reference": "0aa043e2d306566b132bb39ddecd209afa5065a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Slamdunk/phpstan-extensions/zipball/0aa043e2d306566b132bb39ddecd209afa5065a7",
+                "reference": "0aa043e2d306566b132bb39ddecd209afa5065a7",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^4.17.1",
+                "php": "~8.2.0 || ~8.3.0",
+                "phpstan/phpstan": "^1.10.44"
+            },
+            "require-dev": {
+                "nette/di": "^3.1.8",
+                "nette/neon": "^3.4.1",
+                "phpstan/phpstan-phpunit": "^1.3.15",
+                "phpunit/phpunit": "^10.4.2",
+                "slam/php-cs-fixer-extensions": "^3.10.0"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "conf/slam-rules.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SlamPhpStan\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filippo Tessarotto",
+                    "email": "zoeslam@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Slam extension of phpstan",
+            "support": {
+                "issues": "https://github.com/Slamdunk/phpstan-extensions/issues",
+                "source": "https://github.com/Slamdunk/phpstan-extensions/tree/v6.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/filippotessarotto",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Slamdunk",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-11-22T06:48:27+00:00"
+        },
+        {
             "name": "squizlabs/php_codesniffer",
             "version": "3.7.2",
             "source": {
@@ -6281,6 +6405,82 @@
                 }
             ],
             "time": "2021-07-28T10:34:58+00:00"
+        },
+        {
+            "name": "voku/phpstan-rules",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/voku/phpstan-rules.git",
+                "reference": "9da053090131436b77418da207daf5578a272e7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/voku/phpstan-rules/zipball/9da053090131436b77418da207daf5578a272e7d",
+                "reference": "9da053090131436b77418da207daf5578a272e7d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0",
+                "phpstan/phpstan": "^1.9.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan-phpunit": "^1.1.0",
+                "phpunit/phpunit": "~7.0 || ~9.0"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "rules.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "voku\\PHPStan\\Rules\\": "src/voku/PHPStan/Rules/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Moelleken",
+                    "email": "lars@moelleken.org"
+                }
+            ],
+            "description": "Provides additional rules for phpstan/phpstan.",
+            "homepage": "https://github.com/voku/phpstan-rules",
+            "keywords": [
+                "PHPStan",
+                "phpstan-extreme-rules",
+                "phpstan-rules"
+            ],
+            "support": {
+                "issues": "https://github.com/voku/phpstan-rules/issues",
+                "source": "https://github.com/voku/phpstan-rules"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/moelleken",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/voku",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/voku",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/voku/phpstan-rules",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-06-09T14:59:29+00:00"
         }
     ],
     "aliases": [],

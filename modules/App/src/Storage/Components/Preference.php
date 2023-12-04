@@ -11,9 +11,9 @@ class Preference
     // "Step1: coffee 90%, Step2: oat-milk 10%". Or "Step1: vodka 45% & cola 45%, Step2: tabasco 10%"
 
     public function __construct(
-        public string $uid,
-        public int $ingredients1percent,
-        public int $ingredients2percent
+        private string $uid,
+        private int $ingredients1percent,
+        private int $ingredients2percent
     ) {
     }
 
