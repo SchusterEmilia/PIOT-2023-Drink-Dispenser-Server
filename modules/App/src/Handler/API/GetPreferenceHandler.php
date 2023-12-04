@@ -32,13 +32,13 @@ class GetPreferenceHandler implements RequestHandlerInterface
         $params = $request->getQueryParams();
         $uid = $params['uid'] ?? null;
 
-        if($uid === null){
+        if ($uid === null) {
             return new JsonResponse([], 400);
         }
         $status = 404;
         $data = null;
         $preference = $this->preferenceService->getPreference($uid);
-        if($preference !== null) {
+        if ($preference !== null) {
             $data = $preference;
             $status = 200;
         }

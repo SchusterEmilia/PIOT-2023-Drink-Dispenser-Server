@@ -8,7 +8,6 @@ use App\Storage\Components\Preference;
 
 class PreferenceService
 {
-
     public function getPreference(string $uid): ?Preference
     {
         //TODO fetch from repository and database
@@ -22,5 +21,4 @@ class PreferenceService
         //TODO decide on arguments structure and save to db
         return true;
     }
-
 }

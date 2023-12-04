@@ -1,0 +1,13 @@
+<ruleset name="coding-style">
+    <description>Coding style description</description>
+
+    <file>../modules</file>
+    <file>../test</file>
+
+    <rule ref="PSR12">
+        <exclude name="PSR12.Classes.AnonClassDeclaration.SpaceAfterKeyword" />
+        <exclude name="PSR12.Files.FileHeader.IncorrectGrouping" />
+        <exclude name="PSR12.Files.FileHeader.IncorrectOrder" />
+        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock" />
+    </rule>
+</ruleset>
