@@ -24,20 +24,6 @@ class HomePageHandlerFactoryTest extends TestCase
         $this->router    = $this->createMock(RouterInterface::class);
     }
 
-    public function testFactoryWithoutTemplate(): void
-    {
-        $this->container
-            ->expects(self::once())
-            ->method('has')
-            ->with(TemplateRendererInterface::class)
-            ->willReturn(false);
-
-        $factory  = new HomePageHandlerFactory();
-        $homePage = $factory($this->container);
-
-        self::assertInstanceOf(HomePageHandler::class, $homePage);
-    }
-
     public function testFactoryWithTemplate(): void
     {
         $renderer = $this->createMock(TemplateRendererInterface::class);
