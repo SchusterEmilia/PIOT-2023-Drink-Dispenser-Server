@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace test\AppTest\Handler;
+namespace AppTest\Handler;
 
+use App\Handler\HomePageHandler;
+use App\Handler\HomePageHandlerFactory;
 use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
-use src\App\src\Handler\HomePageHandler;
-use src\App\src\Handler\HomePageHandlerFactory;
 
 class HomePageHandlerFactoryTest extends TestCase
 {
@@ -33,11 +33,6 @@ class HomePageHandlerFactoryTest extends TestCase
             ->method('has')
             ->with(TemplateRendererInterface::class)
             ->willReturn(false);
-        $this->container
-            ->expects($this->once())
-            ->method('get')
-            ->with(RouterInterface::class)
-            ->willReturn($this->router);
 
         $factory  = new HomePageHandlerFactory();
         $homePage = $factory($this->container);
@@ -54,16 +49,10 @@ class HomePageHandlerFactoryTest extends TestCase
             ->with(TemplateRendererInterface::class)
             ->willReturn(true);
         $this->container
-            ->expects($this->exactly(2))
+            ->expects($this->exactly(1))
             ->method('get')
-            ->withConsecutive(
-                [RouterInterface::class],
-                [TemplateRendererInterface::class],
-            )
-            ->willReturnOnConsecutiveCalls(
-                $this->router,
-                $renderer
-            );
+            ->with(TemplateRendererInterface::class)
+            ->willReturn($renderer);
 
         $factory  = new HomePageHandlerFactory();
         $homePage = $factory($this->container);

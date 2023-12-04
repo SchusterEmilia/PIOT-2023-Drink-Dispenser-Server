@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace test\AppTest\Handler;
+namespace AppTest\Handler;
+
+use App\Handler\PingHandler;
 
 use function json_decode;
 
@@ -14,7 +16,6 @@ use PHPUnit\Framework\TestCase;
 use function property_exists;
 
 use Psr\Http\Message\ServerRequestInterface;
-use src\App\src\Handler\PingHandler;
 
 class PingHandlerTest extends TestCase
 {

@@ -2,17 +2,16 @@
 
 declare(strict_types=1);
 
-namespace test\AppTest\Handler;
+namespace AppTest\Handler;
 
+use App\Handler\HomePageHandler;
 use Laminas\Diactoros\Response\HtmlResponse;
-use Laminas\Diactoros\Response\JsonResponse;
 use Mezzio\Router\RouterInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use src\App\src\Handler\HomePageHandler;
 
 class HomePageHandlerTest extends TestCase
 {
@@ -28,20 +27,6 @@ class HomePageHandlerTest extends TestCase
         $this->router    = $this->createMock(RouterInterface::class);
     }
 
-    public function testReturnsJsonResponseWhenNoTemplateRendererProvided(): void
-    {
-        $homePage = new HomePageHandler(
-            $this->container::class,
-            $this->router,
-            null
-        );
-        $response = $homePage->handle(
-            $this->createMock(ServerRequestInterface::class)
-        );
-
-        self::assertInstanceOf(JsonResponse::class, $response);
-    }
-
     public function testReturnsHtmlResponseWhenTemplateRendererProvided(): void
     {
         $renderer = $this->createMock(TemplateRendererInterface::class);
@@ -52,8 +37,6 @@ class HomePageHandlerTest extends TestCase
             ->willReturn('');
 
         $homePage = new HomePageHandler(
-            $this->container::class,
-            $this->router,
             $renderer
         );
 
