@@ -28,11 +28,6 @@ class HomePageHandlerFactoryTest extends TestCase
     {
         $renderer = $this->createMock(TemplateRendererInterface::class);
         $this->container
-            ->expects(self::once())
-            ->method('has')
-            ->with(TemplateRendererInterface::class)
-            ->willReturn(true);
-        $this->container
             ->expects(self::exactly(1))
             ->method('get')
             ->with(TemplateRendererInterface::class)

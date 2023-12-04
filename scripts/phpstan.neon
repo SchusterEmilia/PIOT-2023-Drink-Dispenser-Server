@@ -4,9 +4,10 @@ includes:
     - ../vendor/phpstan/phpstan-phpunit/extension.neon
     - ../vendor/phpstan/phpstan-phpunit/rules.neon
     - ../vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - ../vendor/bnf/phpstan-psr-container/extension.neon
+    - ../vendor/shipmonk/phpstan-rules/rules.neon
     - ../vendor/slam/phpstan-extensions/conf/slam-rules.neon
     - ../vendor/voku/phpstan-rules/rules.neon
-    - ../vendor/shipmonk/phpstan-rules/rules.neon
 parameters:
 	level: 8
 	paths:
