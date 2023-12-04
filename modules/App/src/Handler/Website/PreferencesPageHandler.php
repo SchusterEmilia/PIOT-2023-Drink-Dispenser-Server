@@ -14,8 +14,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 class PreferencesPageHandler implements RequestHandlerInterface
 {
     public function __construct(
-        private ?TemplateRendererInterface $template,
-        private ?PreferenceService $preferenceService
+        private TemplateRendererInterface $template,
+        private PreferenceService $preferenceService
     ) {
     }
 

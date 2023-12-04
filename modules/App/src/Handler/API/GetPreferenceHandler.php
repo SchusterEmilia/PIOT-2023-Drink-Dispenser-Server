@@ -13,7 +13,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 class GetPreferenceHandler implements RequestHandlerInterface
 {
     public function __construct(
-        private ?PreferenceService $preferenceService
+        private PreferenceService $preferenceService
     ) {
     }
 
@@ -27,6 +27,7 @@ class GetPreferenceHandler implements RequestHandlerInterface
         }
         $status = 404;
         $data = null;
+        assert(is_string($uid));
         $preference = $this->preferenceService->getPreference($uid);
         if ($preference !== null) {
             $data = $preference;

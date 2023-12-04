@@ -17,7 +17,7 @@ class HomePageHandlerFactory
         $template = $container->has(TemplateRendererInterface::class)
             ? $container->get(TemplateRendererInterface::class)
             : null;
-        assert($template instanceof TemplateRendererInterface || null === $template);
+        assert($template instanceof TemplateRendererInterface);
 
         return new HomePageHandler($template);
     }
