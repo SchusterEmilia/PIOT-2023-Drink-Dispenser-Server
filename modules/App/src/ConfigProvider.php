@@ -44,10 +44,10 @@ class ConfigProvider
             'invokables' => [
                 PingHandler::class => PingHandler::class,
             ],
-            'factories'  => [
+            'factories' => [
                 PreferenceService::class => PreferenceServiceFactory::class,
 
-                GetPreferenceHandler::class => GetPreferenceHandlerFactory::class,
+                GetPreferenceHandler::class   => GetPreferenceHandlerFactory::class,
                 PreferencesPageHandler::class => PreferencesPageHandlerFactory::class,
 
                 HomePageHandler::class => HomePageHandlerFactory::class,
