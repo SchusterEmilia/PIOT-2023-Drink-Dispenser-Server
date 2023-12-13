@@ -13,10 +13,13 @@ parameters:
 	paths:
 		- ../modules
 		- ../test
+		- ../bin
 	checkImplicitMixed: true
 	checkUninitializedProperties: true
 	reportAlwaysTrueInLastCondition: true
 	shipmonkRules:
+	    allowNamedArgumentOnlyInAttributes:
+	        enabled: false
 	    forbidFetchOnMixed:
 	        enabled: false
 	    forbidUselessNullableReturn:

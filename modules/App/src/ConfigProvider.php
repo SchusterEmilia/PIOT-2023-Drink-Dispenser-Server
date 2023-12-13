@@ -9,10 +9,14 @@ use App\Handler\API\GetPreferenceHandlerFactory;
 use App\Handler\HomePageHandler;
 use App\Handler\HomePageHandlerFactory;
 use App\Handler\PingHandler;
+use App\Handler\Website\ActionsOverviewPageHandler;
+use App\Handler\Website\ActionsOverviewPageHandlerFactory;
 use App\Handler\Website\PreferencesPageHandler;
 use App\Handler\Website\PreferencesPageHandlerFactory;
 use App\Services\PreferenceService;
 use App\Services\PreferenceServiceFactory;
+use App\Storage\EntityManagerFactory;
+use Doctrine\ORM\EntityManager;
 
 /**
  * The configuration provider for the App module
@@ -49,10 +53,12 @@ class ConfigProvider
             'factories' => [
                 PreferenceService::class => PreferenceServiceFactory::class,
 
-                GetPreferenceHandler::class   => GetPreferenceHandlerFactory::class,
-                PreferencesPageHandler::class => PreferencesPageHandlerFactory::class,
+                ActionsOverviewPageHandler::class => ActionsOverviewPageHandlerFactory::class,
+                GetPreferenceHandler::class       => GetPreferenceHandlerFactory::class,
+                PreferencesPageHandler::class     => PreferencesPageHandlerFactory::class,
+                HomePageHandler::class            => HomePageHandlerFactory::class,
 
-                HomePageHandler::class => HomePageHandlerFactory::class,
+                EntityManager::class => EntityManagerFactory::class,
             ],
         ];
     }

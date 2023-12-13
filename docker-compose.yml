@@ -8,3 +8,12 @@ services:
     volumes:
        - ./:/code
     container_name: drink_server
+
+  drink_db:
+    image: percona
+    container_name: drink_db
+    environment:
+      MYSQL_ROOT_PASSWORD: drinkrootpw
+      MYSQL_DATABASE: drinkdb
+      MYSQL_USER: drinkuser
+      MYSQL_PASSWORD: drinkpw

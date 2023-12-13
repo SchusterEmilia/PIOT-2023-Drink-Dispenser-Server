@@ -3,6 +3,7 @@
 
     <file>../modules</file>
     <file>../test</file>
+    <file>../bin</file>
 
     <rule ref="PSR12">
         <exclude name="PSR12.Classes.AnonClassDeclaration.SpaceAfterKeyword" />

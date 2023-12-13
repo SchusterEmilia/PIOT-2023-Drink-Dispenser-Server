@@ -11,7 +11,7 @@ class PreferenceService
     public function getPreference(string $uid): ?Preference
     {
         //TODO fetch from repository and database
-        $preference = new Preference($uid, 100, 0);
+        $preference = new Preference($uid);
 
         return $preference;
     }

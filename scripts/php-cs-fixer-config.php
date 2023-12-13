@@ -5,6 +5,7 @@ declare(strict_types=1);
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__ . '/../modules')
     ->in(__DIR__ . '/../test')
+    ->in(__DIR__ . '/../bin')
     ->exclude([
         'modules/App/templates',
     ]);
