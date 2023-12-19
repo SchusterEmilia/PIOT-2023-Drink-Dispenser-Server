@@ -23,7 +23,7 @@ class Action
         #[Column(type: Types::STRING, length: 64, unique: true)]
         private string $uid,
         #[Column(type: Types::DATETIME_IMMUTABLE)]
-        private \DateTime $date,
+        private \DateTimeImmutable $date,
         #[Column(type: Types::BOOLEAN)]
         private bool $successful,
     ) {
@@ -39,7 +39,7 @@ class Action
         return $this->uid;
     }
 
-    public function getDate(): \DateTime
+    public function getDate(): \DateTimeImmutable
     {
         return $this->date;
     }

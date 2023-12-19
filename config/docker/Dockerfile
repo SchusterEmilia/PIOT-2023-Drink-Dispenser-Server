@@ -29,6 +29,7 @@ RUN curl -sSLo /usr/share/keyrings/deb.sury.org-php.gpg https://packages.sury.or
 
 #PHP packages
 RUN apt-get install -y --no-install-recommends \
+    php8.2-apcu \
     php8.2-cli \
     php8.2-fpm \
     php8.2-xdebug \

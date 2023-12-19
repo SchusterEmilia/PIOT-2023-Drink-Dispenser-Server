@@ -17,3 +17,5 @@ services:
       MYSQL_DATABASE: drinkdb
       MYSQL_USER: drinkuser
       MYSQL_PASSWORD: drinkpw
+    ports:
+      - "12345:3306"

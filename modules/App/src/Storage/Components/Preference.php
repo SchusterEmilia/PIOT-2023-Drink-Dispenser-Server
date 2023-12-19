@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Storage\Components;
 
+use App\Storage\Repositories\PreferenceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -13,7 +14,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
-#[Entity]
+#[Entity(repositoryClass: PreferenceRepository::class)]
 #[Table(name: 'preferences')]
 class Preference
 {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Storage\Components;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -17,7 +18,7 @@ use Doctrine\ORM\Mapping\Table;
 #[Table(name: 'preferences2ingredients')]
 class Preference2Ingredients
 {
-    public function __construct(
+    private function __construct(
         #[Id]
         #[Column(name: 'id', type: Types::INTEGER)]
         #[GeneratedValue(strategy: 'IDENTITY')]
@@ -31,6 +32,16 @@ class Preference2Ingredients
         #[Column(name: 'percentage', type: Types::INTEGER)]
         private int $percentage, //Should add up to 100
     ) {
+    }
+
+    public static function createNew(Preference $preference, Ingredient $ingredient, int $percentage): Preference2Ingredients
+    {
+        return new Preference2Ingredients(
+            null,
+            $preference,
+            $ingredient,
+            $percentage,
+        );
     }
     public function getId(): ?int
     {
