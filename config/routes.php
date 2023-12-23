@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Handler\API\GetPreferenceHandler;
 use App\Handler\HomePageHandler;
 use App\Handler\PingHandler;
-use App\Handler\Website\PreferencesPageHandler;
+use App\Handler\Website\PreferencePageHandler;
 use Mezzio\Application;
 use Mezzio\Handler\NotFoundHandler;
 use Mezzio\MiddlewareFactory;
@@ -47,7 +47,7 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
 
     $app->get('/api/preference', GetPreferenceHandler::class, 'api.getPreference'); //Device & App
     $app->post('/api/preference', NotFoundHandler::class, 'api.postPreference'); // App
-    $app->route('/preference', PreferencesPageHandler::class, ['get','post'],'preference'); //Website
+    $app->route('/preference', PreferencePageHandler::class, ['get','post'],'preference'); //Website
 
     $app->get('/api/stats', NotFoundHandler::class, 'api.getStats'); //App
     $app->post('/api/stats', NotFoundHandler::class, 'api.postStats'); //Device

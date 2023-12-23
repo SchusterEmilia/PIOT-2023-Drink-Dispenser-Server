@@ -9,22 +9,18 @@ use App\Storage\Components\Preference;
 use App\Storage\Components\Preference2Ingredients;
 use App\Storage\Repositories\PreferenceRepository;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Exception\ORMException;
 
 class PreferenceService
 {
-
     public function __construct(
         private EntityManager $entityManager,
         private PreferenceRepository $preferenceRepository,
-    )
-    {
+    ) {
     }
     public function getPreference(string $uid): ?Preference
     {
         return $this->preferenceRepository->find($uid);
     }
-
 
     /**
      * @param list<array{ingredient: Ingredient, percentage: int}> $ingredients
@@ -32,13 +28,17 @@ class PreferenceService
     public function setPreference(string $uid, array $ingredients): bool
     {
         $preference = $this->preferenceRepository->find($uid);
-        if ($preference === null){
+        if ($preference === null) {
             $preference = Preference::createNew($uid);
-            $this->entityManager->persist($this->entityManager);
+            $this->entityManager->persist($preference);
+        }
+        foreach ($preference->getPreferenceIngredients()->getValues() as $preferenceIngredient) {
+            $this->entityManager->remove($preferenceIngredient);
         }
         $preference->getPreferenceIngredients()->clear();
-        foreach ($ingredients as $ingredient){
-            $p2i = Preference2Ingredients::createNew($preference, $ingredient["ingredient"], $ingredient["percentage"]);
+        foreach ($ingredients as $ingredient) {
+            $p2i = Preference2Ingredients::createNew($preference, $ingredient['ingredient'], $ingredient['percentage']);
+            $this->entityManager->persist($p2i);
             $preference->getPreferenceIngredients()->add($p2i);
         }
 

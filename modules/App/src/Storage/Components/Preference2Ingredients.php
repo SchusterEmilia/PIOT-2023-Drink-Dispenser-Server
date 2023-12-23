@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Storage\Components;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -34,8 +33,11 @@ class Preference2Ingredients
     ) {
     }
 
-    public static function createNew(Preference $preference, Ingredient $ingredient, int $percentage): Preference2Ingredients
-    {
+    public static function createNew(
+        Preference $preference,
+        Ingredient $ingredient,
+        int $percentage
+    ): Preference2Ingredients {
         return new Preference2Ingredients(
             null,
             $preference,

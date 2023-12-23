@@ -70,4 +70,4 @@ RUN usermod -aG $USERNAME www-data
 USER $USERNAME
 WORKDIR /code
 
-CMD composer install && sudo nginx && sudo php-fpm8.2 && tail -f /dev/null
+CMD composer install && composer migrate && sudo nginx && sudo php-fpm8.2 && tail -f /dev/null

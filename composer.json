@@ -104,12 +104,13 @@
             "@php-cs-fixer-check"
         ],
         "cs-fix": [
-            "@phpcodesniffer-fix || true",
+            "@phpcodesniffer-fix",
             "@php-cs-fixer-fix"
         ],
         "clear-config-cache": "php bin/clear-config-cache.php",
+        "migrate": "@doctrine m:m -n",
         "phpcodesniffer": "php vendor/bin/phpcs -p --standard=scripts/phpcs.xml",
-        "phpcodesniffer-fix": "php vendor/bin/phpcbf -p --standard=scripts/phpcs.xml",
+        "phpcodesniffer-fix": "php vendor/bin/phpcbf -p --standard=scripts/phpcs.xml || true",
         "php-cs-fixer-check": "php vendor/bin/php-cs-fixer fix --config scripts/php-cs-fixer-config.php --verbose --show-progress=dots --dry-run",
         "php-cs-fixer-fix": "php vendor/bin/php-cs-fixer fix --config scripts/php-cs-fixer-config.php --verbose --show-progress=dots",
         "phpstan": "php vendor/bin/phpstan analyze -c scripts/phpstan.neon",

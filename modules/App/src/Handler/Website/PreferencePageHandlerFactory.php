@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace App\Handler\Website;
 
 use App\Services\PreferenceService;
+use App\Storage\Components\Ingredient;
+use Doctrine\ORM\EntityManager;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class PreferencesPageHandlerFactory
+class PreferencePageHandlerFactory
 {
     /**
      * @throws ContainerExceptionInterface
@@ -23,6 +25,8 @@ class PreferencesPageHandlerFactory
 
         $preferenceService = $container->get(PreferenceService::class);
 
-        return new PreferencesPageHandler($template, $preferenceService);
+        $ingredientRepository = $container->get(EntityManager::class)->getRepository(Ingredient::class);
+
+        return new PreferencePageHandler($template, $preferenceService, $ingredientRepository);
     }
 }

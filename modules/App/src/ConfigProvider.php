@@ -11,8 +11,8 @@ use App\Handler\HomePageHandlerFactory;
 use App\Handler\PingHandler;
 use App\Handler\Website\ActionsOverviewPageHandler;
 use App\Handler\Website\ActionsOverviewPageHandlerFactory;
-use App\Handler\Website\PreferencesPageHandler;
-use App\Handler\Website\PreferencesPageHandlerFactory;
+use App\Handler\Website\PreferencePageHandler;
+use App\Handler\Website\PreferencePageHandlerFactory;
 use App\Services\PreferenceService;
 use App\Services\PreferenceServiceFactory;
 use App\Storage\EntityManagerFactory;
@@ -55,7 +55,7 @@ class ConfigProvider
 
                 ActionsOverviewPageHandler::class => ActionsOverviewPageHandlerFactory::class,
                 GetPreferenceHandler::class       => GetPreferenceHandlerFactory::class,
-                PreferencesPageHandler::class     => PreferencesPageHandlerFactory::class,
+                PreferencePageHandler::class      => PreferencePageHandlerFactory::class,
                 HomePageHandler::class            => HomePageHandlerFactory::class,
 
                 EntityManager::class => EntityManagerFactory::class,

@@ -43,7 +43,7 @@ class Preference
         );
     }
 
-    public function getId(): string
+    public function getUid(): string
     {
         return $this->uid;
     }

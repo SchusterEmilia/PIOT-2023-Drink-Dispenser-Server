@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Storage\Repositories;
 
 use App\Storage\Components\Preference;
@@ -10,5 +12,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class PreferenceRepository extends EntityRepository
 {
-
 }

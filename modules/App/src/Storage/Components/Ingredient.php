@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Storage\Components;
 
+use App\Storage\Repositories\IngredientRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
 
-#[Entity]
+#[Entity(repositoryClass: IngredientRepository::class)]
 #[Table(name: 'ingredients')]
 class Ingredient
 {
