@@ -26,13 +26,17 @@ class GetPreferenceHandler implements RequestHandlerInterface
             return new JsonResponse([], 400);
         }
         $status = 404;
-        $data = null;
         assert(is_string($uid));
         $preference = $this->preferenceService->getPreference($uid);
+        $preferenceIngredients = [];
         if ($preference !== null) {
-            $data = $preference;
+            $preferenceIngredientsUnsorted = $preference->getPreferenceIngredients()->getValues();
+            foreach ($preferenceIngredientsUnsorted as $preferenceIngredient) {
+                $id = $preferenceIngredient->getIngredient()->getId();
+                $preferenceIngredients[$id] = $preferenceIngredient->getPercentage();
+            }
             $status = 200;
         }
-        return new JsonResponse($data, $status);
+        return new JsonResponse($preferenceIngredients, $status);
     }
 }
