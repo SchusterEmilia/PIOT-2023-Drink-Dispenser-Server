@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div>
                     <div>
-                        <h4 class="card-title mb-0">Actions Overview</h4>
+                        <h4 class="card-title mb-0">Preference Settings</h4>
                     </div>
                     <div class="d-none d-md-block">
                         <form class="row g-3" method="post">
@@ -52,12 +52,15 @@
                                                                     min="0"
                                                                     max="100"
                                                                     step="1"
+                                                                    {% if loop.last %}
+                                                                    aria-describedby="inputError"
+                                                                    {% endif %}
                                                             >
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-1">
-                                                    <label for="ingredient-{{ ingredient.id }}" id="ingredient-{{ ingredient.id }}-value">
+                                                    <label class="form-label" for="ingredient-{{ ingredient.id }}" id="ingredient-{{ ingredient.id }}-value">
                                                         {{ preference is not null ?
                                                         preferenceIngredients[ingredient.id] is defined ?
                                                         preferenceIngredients[ingredient.id]
@@ -67,10 +70,22 @@
                                                 </div>
                                             </div>
                                         {% endfor %}
+                                        <div class="row">
+                                            <div class="col-12">
+                                                {% if error %}
+                                                    <div id="inputError" class="form-control is-invalid">
+                                                        {% if percentageError %}
+                                                            You must have 100% of ingredients in your drink
+                                                        {% endif %}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 text-end">
+
                                         <button class="btn btn-primary" type="submit">Save</button>
                                     </div>
                                 </div>
@@ -84,8 +99,6 @@
 {% endblock %}
 
 {% block javascript %}
-    <script src="vendors/chart.js/js/chart.min.js"></script>
-    <script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
     <script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
     <script src="js/main.js"></script>
     <script>

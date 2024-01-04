@@ -24,6 +24,8 @@ class PreferencePageHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $error = false;
+        $percentageError = false;
         $queryparams = $request->getQueryParams();
         $uid = $queryparams['uid'] ?? null;
         if (!is_string($uid)) {
@@ -45,7 +47,16 @@ class PreferencePageHandler implements RequestHandlerInterface
                 }
                 $ingredientAmounts[] = ['ingredient' => $ingredient, 'percentage' => $parsedIngredient['percentage']];
             }
-            $this->preferenceService->setPreference($parsedParams['uid'], $ingredientAmounts);
+            $percentage = 0;
+            foreach ($ingredientAmounts as $ingredientAmount){
+                $percentage += $ingredientAmount['percentage'];
+            }
+            if($percentage === 100){
+                $this->preferenceService->setPreference($parsedParams['uid'], $ingredientAmounts);
+            } else {
+                $error = true;
+                $percentageError = true;
+            }
         }
         $preference = $this->preferenceService->getPreference($uid);
         $ingredients = $this->ingredientRepository->findAll();
@@ -62,6 +73,8 @@ class PreferencePageHandler implements RequestHandlerInterface
             'preferenceIngredients' => $preferenceIngredients,
             'uid'                   => $uid,
             'ingredients'           => $ingredients,
+            'error'                 => $error,
+            'percentageError'       => $percentageError,
         ]));
     }
 
