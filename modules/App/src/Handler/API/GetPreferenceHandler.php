@@ -6,6 +6,7 @@ namespace App\Handler\API;
 
 use App\Services\PreferenceService;
 use Laminas\Diactoros\Response\JsonResponse;
+use Laminas\Diactoros\Response\TextResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -23,7 +24,7 @@ class GetPreferenceHandler implements RequestHandlerInterface
         $uid = $params['uid'] ?? null;
 
         if ($uid === null) {
-            return new JsonResponse([], 400);
+            return new TextResponse("0", 400);
         }
         $status = 404;
         assert(is_string($uid));
@@ -36,7 +37,13 @@ class GetPreferenceHandler implements RequestHandlerInterface
                 $preferenceIngredients[$id] = $preferenceIngredient->getPercentage();
             }
             $status = 200;
+            $response = "1"; //Preference found
+            foreach ($preferenceIngredients as $id=>$percentage){
+                $response .= "_".$id.":".$percentage;
+            }
+        } else {
+            $response = "2"; //Not preference registered
         }
-        return new JsonResponse($preferenceIngredients, $status);
+        return new TextResponse($response, $status);
     }
 }
