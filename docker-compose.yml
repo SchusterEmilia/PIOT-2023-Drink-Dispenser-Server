@@ -6,8 +6,10 @@ services:
     build:
       dockerfile: config/docker/Dockerfile
     volumes:
-       - ./:/code
+      - ./:/code
     container_name: drink_server
+    depends_on:
+      - drink_db
 
   drink_db:
     image: percona

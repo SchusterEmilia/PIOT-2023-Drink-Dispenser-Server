@@ -31,22 +31,39 @@
                                     <div class="col-12">
                                         {% for ingredient in ingredients %}
                                             <div class="row">
-                                                <div class="col-8" title="{{ ingredient.description }}">
+                                                <div class="col-5" title="{{ ingredient.description }}">
                                                     {{ ingredient.description }}
                                                 </div>
-                                                <div class="col-4">
-                                                    <label for="preference-{{ ingredient.id }}" class="form-label">Percentage</label>
-                                                    <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            value="{{ preference is not null ?
-                                                            preferenceIngredients[ingredient.id] is defined ?
-                                                            preferenceIngredients[ingredient.id]
-                                                            : 0
-                                                            : 0 }}"
-                                                            id="ingredient-{{ ingredient.id }}"
-                                                            name="ingredient-{{ ingredient.id }}"
-                                                    >
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-5">
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <input
+                                                                    type="range"
+                                                                    class="form-range depend"
+                                                                    value="{{ preference is not null ?
+                                                                    preferenceIngredients[ingredient.id] is defined ?
+                                                                    preferenceIngredients[ingredient.id]
+                                                                    : 0
+                                                                    : 0 }}"
+                                                                    id="ingredient-{{ ingredient.id }}"
+                                                                    name="ingredient-{{ ingredient.id }}"
+                                                                    min="0"
+                                                                    max="100"
+                                                                    step="1"
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <label for="ingredient-{{ ingredient.id }}" id="ingredient-{{ ingredient.id }}-value">
+                                                        {{ preference is not null ?
+                                                        preferenceIngredients[ingredient.id] is defined ?
+                                                        preferenceIngredients[ingredient.id]
+                                                        : 0
+                                                        : 0 }}%
+                                                    </label>
                                                 </div>
                                             </div>
                                         {% endfor %}
@@ -67,8 +84,72 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="vendors/chart.js/js/chart.min.js"></script>
-<script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
-<script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
-<script src="js/main.js"></script>
+    <script src="vendors/chart.js/js/chart.min.js"></script>
+    <script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+    <script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        var depends = document.querySelectorAll('.depend');
+        [].forEach.call(depends, function (depend) {
+            depend.onchange = function () {
+                setLabel(this, this.value);
+                calculateOthers(this);
+            }
+        });
+
+        function calculateOthers(current) {
+            var input = current.value;
+            var max = 100;
+            var delta = max - parseInt(input);
+            var sum = 0;
+            var partial = 0;
+            var siblings = [];
+
+            // Sum of all siblings
+            [].forEach.call(depends, function (depend) {
+                if (current != depend) {
+                    siblings.push(depend); // Register as sibling
+                    sum += +depend.value;
+                }
+            });
+
+            // Update all the siblings
+            siblings.forEach(function (subling, i) {
+
+                var val = +subling.value;
+                var fraction = 0;
+
+                // Calculate fraction
+                if (sum <= 0) {
+                    fraction = 1 / (depends.length - 1)
+                } else {
+                    fraction = val / sum;
+                }
+
+                // The last element will correct rounding errors
+                if (i >= depends.length - 1) {
+                    val = max - partial;
+                } else {
+                    val = Math.round(delta * fraction);
+                    partial += val;
+                }
+
+                // Check if total of all range is greater than max value
+                var total = partial + parseInt(input);
+                if (total > max) {
+                    var diff = total - max; // Calculate the difference
+                    val = val - diff; // Update the value
+                    partial = partial - diff;
+                }
+
+                setLabel(subling, val);
+            });
+        }
+
+        function setLabel(el, value) {
+            var label = document.getElementById(el.id + '-value')
+            label.innerHTML = value+"%";
+            el.value = value;
+        }
+    </script>
 {% endblock %}
