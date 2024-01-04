@@ -2,63 +2,57 @@
 
 {% block title %}Action Overview{% endblock %}
 
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><span>Home</span></li>
+    <li class="breadcrumb-item active"><span>Preference Overview</span></li>
+{% endblock %}
+
 {% block content %}
     <div class="container-lg">
         <div class="card mb-4">
             <div class="card-body">
                 <div>
                     <div>
-                        <h4 class="card-title mb-0">Actions Overview</h4>
+                        <h4 class="card-title mb-0">Preferences Overview</h4>
                     </div>
                     <div class="d-none d-md-block">
-                        <form class="row g-3" method="post">
-                            <div class="col-12">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <label for="preferenceUID" class="form-label">UID</label>
-                                        <input
-                                                type="text"
-                                                class="form-control"
-                                                value="{{ preference is not null ? preference.uid : uid }}"
-                                                id="preferenceUID"
-                                                name="UID"
-                                                required
-                                                readonly
-                                        >
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        {% for ingredient in ingredients %}
-                                            <div class="row">
-                                                <div class="col-8" title="{{ ingredient.description }}">
-                                                    {{ ingredient.description }}
-                                                </div>
-                                                <div class="col-4">
-                                                    <label for="preference-{{ ingredient.id }}" class="form-label">Percentage</label>
-                                                    <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            value="{{ preference is not null ?
-                                                            preferenceIngredients[ingredient.id] is defined ?
-                                                            preferenceIngredients[ingredient.id]
-                                                            : 0
-                                                            : 0 }}"
-                                                            id="ingredient-{{ ingredient.id }}"
-                                                            name="ingredient-{{ ingredient.id }}"
-                                                    >
-                                                </div>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 text-end">
-                                        <button class="btn btn-primary" type="submit">Save</button>
-                                    </div>
+                        <div class="row">
+                            <div class="col-12 pe-3">
+                                <div class="text-end">
+                                    <a class="btn btn-outline-primary" role="button" href="{{ path('preference') }}">Add new Preference</a>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <table class="table">
+                                    <tr>
+                                        <th>UID</th>
+                                        <th>Ingredients</th>
+                                        <th></th>
+                                    </tr>
+                                    {% for preference in preferences %}
+                                        <tr>
+                                            <td>{{ preference.uid }}</td>
+                                            <td>
+                                                {% for p2i in preference.getHighestIngredients|slice(0,2) %}
+                                                    {{ p2i.ingredient.description }} {{ p2i.percentage }}%
+                                                    {% if not loop.last %}|{% endif %}
+                                                {% endfor %}
+                                                {% if preference.getHighestIngredients|length > 2 %}
+                                                    | ...
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <a href="{{ path('preference', {}, {'uid': preference.uid}) }}">
+                                                    <span class="icon cil-pencil" role="button" title="Edit Preference"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,8 +61,6 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="vendors/chart.js/js/chart.min.js"></script>
-<script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
 <script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
 <script src="js/main.js"></script>
 {% endblock %}

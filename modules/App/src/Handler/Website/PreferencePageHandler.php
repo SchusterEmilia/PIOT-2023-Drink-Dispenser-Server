@@ -29,7 +29,7 @@ class PreferencePageHandler implements RequestHandlerInterface
         $queryparams = $request->getQueryParams();
         $uid = $queryparams['uid'] ?? null;
         if (!is_string($uid)) {
-            return new EmptyResponse(400);
+            $uid = '';
         }
         if ($request->getMethod() === 'POST') {
             //TODO: doPost
@@ -48,10 +48,10 @@ class PreferencePageHandler implements RequestHandlerInterface
                 $ingredientAmounts[] = ['ingredient' => $ingredient, 'percentage' => $parsedIngredient['percentage']];
             }
             $percentage = 0;
-            foreach ($ingredientAmounts as $ingredientAmount){
+            foreach ($ingredientAmounts as $ingredientAmount) {
                 $percentage += $ingredientAmount['percentage'];
             }
-            if($percentage === 100){
+            if ($percentage === 100) {
                 $this->preferenceService->setPreference($parsedParams['uid'], $ingredientAmounts);
             } else {
                 $error = true;
@@ -88,6 +88,9 @@ class PreferencePageHandler implements RequestHandlerInterface
             $parsedParameters['ingredients'] = [];
             $uid = $params['UID'] ?? '';
             assert(is_string($uid));
+            if (trim($uid) === '') {
+                return null;
+            }
             $parsedParameters['uid'] = $uid;
             $rawIngredients = array_filter($params, function (string $key): bool {
                 return str_starts_with($key, 'ingredient-');

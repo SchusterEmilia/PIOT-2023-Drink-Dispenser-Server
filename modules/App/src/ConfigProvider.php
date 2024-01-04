@@ -13,6 +13,8 @@ use App\Handler\Website\ActionsOverviewPageHandler;
 use App\Handler\Website\ActionsOverviewPageHandlerFactory;
 use App\Handler\Website\PreferencePageHandler;
 use App\Handler\Website\PreferencePageHandlerFactory;
+use App\Handler\Website\PreferencesOverviewPageHandler;
+use App\Handler\Website\PreferencesOverviewPageHandlerFactory;
 use App\Services\PreferenceService;
 use App\Services\PreferenceServiceFactory;
 use App\Storage\EntityManagerFactory;
@@ -53,10 +55,11 @@ class ConfigProvider
             'factories' => [
                 PreferenceService::class => PreferenceServiceFactory::class,
 
-                ActionsOverviewPageHandler::class => ActionsOverviewPageHandlerFactory::class,
-                GetPreferenceHandler::class       => GetPreferenceHandlerFactory::class,
-                PreferencePageHandler::class      => PreferencePageHandlerFactory::class,
-                HomePageHandler::class            => HomePageHandlerFactory::class,
+                ActionsOverviewPageHandler::class     => ActionsOverviewPageHandlerFactory::class,
+                GetPreferenceHandler::class           => GetPreferenceHandlerFactory::class,
+                PreferencePageHandler::class          => PreferencePageHandlerFactory::class,
+                PreferencesOverviewPageHandler::class => PreferencesOverviewPageHandlerFactory::class,
+                HomePageHandler::class                => HomePageHandlerFactory::class,
 
                 EntityManager::class => EntityManagerFactory::class,
             ],

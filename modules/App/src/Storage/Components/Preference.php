@@ -55,4 +55,17 @@ class Preference
     {
         return $this->preferenceIngredients;
     }
+
+    /**
+     * @return list<Preference2Ingredients>
+     */
+    public function getHighestIngredients(): array
+    {
+        $ingredients = $this->getPreferenceIngredients()->getValues();
+        usort($ingredients, function (Preference2Ingredients $ingredient1, Preference2Ingredients $ingredient2): int {
+            return $ingredient2->getPercentage() - $ingredient1->getPercentage();
+        });
+
+        return $ingredients;
+    }
 }

@@ -2,6 +2,11 @@
 
 {% block title %}Action Overview{% endblock %}
 
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><span>Home</span></li>
+    <li class="breadcrumb-item active"><span>Edit preference</span></li>
+{% endblock %}
+
 {% block content %}
     <div class="container-lg">
         <div class="card mb-4">
@@ -23,7 +28,7 @@
                                                 id="preferenceUID"
                                                 name="UID"
                                                 required
-                                                readonly
+                                                {{ preference is not null ? readonly }}
                                         >
                                     </div>
                                 </div>
